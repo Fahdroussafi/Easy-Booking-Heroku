@@ -7,6 +7,7 @@ const dbConfig = require("./config/dbConfig");
 const bodyParser = require("body-parser");
 const http = require("http");
 const enforce = require("express-sslify");
+const path = require("path");
 
 app.use(cors());
 // app.use(express.json());
