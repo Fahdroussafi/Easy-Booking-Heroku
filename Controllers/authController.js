@@ -105,7 +105,7 @@ const Login = async (req, res) => {
 const ResetPassword = async (req, res) => {
   const { email } = req.body;
   const name = User.name;
-  const redirectUrl = "https://easy-bookings.herokuapp.com/reset-password";
+  const redirectUrl = "http://easy-bookings.herokuapp.com/reset-password";
 
   // check if email exists
   User.find({ email })
