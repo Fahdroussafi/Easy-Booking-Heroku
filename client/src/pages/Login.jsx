@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import { Form, message } from "antd";
-import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { axiosInstance } from "../helpers/axiosInstance";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { ShowLoading, HideLoading } from "../redux/alertsSlice";
 import { Helmet } from "react-helmet";
 
 function Login() {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const onFinish = async (values) => {
     try {
       dispatch(ShowLoading());
-      const response = await axios.post("/api/auth/login", values);
+      const response = await axiosInstance.post("/api/auth/login", values);
       dispatch(HideLoading());
       if (response.data.success) {
         message.success(response.data.message);
@@ -22,11 +21,11 @@ function Login() {
         const idTrip = localStorage.getItem("idTrip");
 
         if (response.data.user.isAdmin === true) {
-          navigate("/admin/buses");
+          window.location.href = "/admin/buses";
         } else if (idTrip == null) {
-          navigate("/bookings");
+          window.location.href = "/bookings";
         } else if (idTrip !== null) {
-          navigate(`/book-now/${idTrip}`);
+          window.location.href = `/book-now/${idTrip}`;
         }
       } else {
         message.error(response.data.message);
