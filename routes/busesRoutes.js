@@ -16,6 +16,6 @@ router.post("/get-all-buses", authMiddleware, GetAllBuses);
 router.put("/:id", authMiddleware, UpdateBus);
 router.delete("/:id", authMiddleware, DeleteBus);
 router.get("/:id", authMiddleware, GetBusById);
-router.post("/get", authMiddleware, GetBusesByFromAndTo);
+router.post("/get", GetBusesByFromAndTo);
 
 module.exports = router;
